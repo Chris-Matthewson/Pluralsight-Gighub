@@ -21,8 +21,12 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
 
 
+.field-validation-error {
+    color: red;
+    font-weight: bold;
 }
 
 /* Bootstrap Overrides */
@@ -84,7 +88,6 @@ h6,
 
 .form-control {
     font-size: 17px;
-    padding: 20px 15px;
     -ms-border-radius: 9px;
     border-radius: 9px;
 }
@@ -101,3 +104,4 @@ h6,
     -ms-border-radius: 9px;
     border-radius: 9px;
 }
+
