@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using GigHub.Models;
+using System;
 using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
-using GigHub.Models;
 
 namespace GigHub.Controllers
 {
@@ -21,7 +19,8 @@ namespace GigHub.Controllers
         {
             var upcomingGigs = _context.Gigs
                 .Include(g => g.Artist)
-                .Where( g => g.DateTime > DateTime.Now);
+                .Include(g => g.Genre)
+                .Where(g => g.DateTime > DateTime.Now);
             return View(upcomingGigs);
         }
 
