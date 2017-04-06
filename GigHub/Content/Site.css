@@ -98,9 +98,11 @@ h6,
     box-shadow: none;
 }
 
-.btn-primary {
+.btn {
+    /*
     font-size: 17px;
     padding: 7px 20px;
+    */
     -ms-border-radius: 9px;
     border-radius: 9px;
 }
