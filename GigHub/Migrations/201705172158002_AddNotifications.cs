@@ -3,25 +3,10 @@ namespace GigHub.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddNotification : DbMigration
+    public partial class AddNotifications : DbMigration
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.Notifications",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        DateTime = c.DateTime(nullable: false),
-                        Type = c.Int(nullable: false),
-                        OriginalDateTime = c.DateTime(),
-                        OriginalVenu = c.String(),
-                        Gig_Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Gigs", t => t.Gig_Id, cascadeDelete: true)
-                .Index(t => t.Gig_Id);
-            
             CreateTable(
                 "dbo.UserNotifications",
                 c => new
@@ -36,6 +21,19 @@ namespace GigHub.Migrations
                 .Index(t => t.UserId)
                 .Index(t => t.NotificationId);
             
+            CreateTable(
+                "dbo.Notifications",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        OriginalDateTime = c.DateTime(),
+                        OriginalVenu = c.String(),
+                        Gig_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Gigs", t => t.Gig_Id, cascadeDelete: true)
+                .Index(t => t.Gig_Id);
+            
         }
         
         public override void Down()
@@ -43,11 +41,11 @@ namespace GigHub.Migrations
             DropForeignKey("dbo.UserNotifications", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.UserNotifications", "NotificationId", "dbo.Notifications");
             DropForeignKey("dbo.Notifications", "Gig_Id", "dbo.Gigs");
+            DropIndex("dbo.Notifications", new[] { "Gig_Id" });
             DropIndex("dbo.UserNotifications", new[] { "NotificationId" });
             DropIndex("dbo.UserNotifications", new[] { "UserId" });
-            DropIndex("dbo.Notifications", new[] { "Gig_Id" });
-            DropTable("dbo.UserNotifications");
             DropTable("dbo.Notifications");
+            DropTable("dbo.UserNotifications");
         }
     }
 }
