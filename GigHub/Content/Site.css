@@ -108,6 +108,7 @@ h6,
     font-size: 17px;
     -ms-border-radius: 9px;
     border-radius: 9px;
+    height: 44px;
 }
 
 .form-control:focus {
@@ -158,16 +159,26 @@ h6,
     padding: 6px 12px;
 }
 
-.gigs >li .details {
+.gigs > li .details {
     position: absolute;
     top: 0;
     left: 70px;
 }
 
-.gigs >li .details .artist{
+.gigs > li .details .artist{
     font-weight: bold;
     display: block;
 }
-.gigs >li .details .genre{
+
+.gigs > li .details .genre{
     font-size: 15px;
+}
+
+.gigs > li .actions {
+    font-size: 15px;
+    display: none;
+}
+
+.gigs > li:hover .actions {
+    display: block;
 }
